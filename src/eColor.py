@@ -7,3 +7,15 @@ class Color(Enum):
     Amarillo = 4
     Verde = 5
     Azul = 6
+    
+    def __str__(num):
+        if num == 2:
+            return "ROJO"
+        elif num == 3:
+            return "NARANJA"
+        elif num == 4:
+            return "AMARILLO"
+        elif num == 5:
+            return "VERDE"
+        else:
+            return "AZUL"

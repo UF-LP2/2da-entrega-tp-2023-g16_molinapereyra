@@ -1,6 +1,6 @@
-import timeit
 import csv
 from src.cPaciente import Paciente
+from src.Funciones import simulacion
 
 
 
@@ -16,7 +16,11 @@ def main() -> None:
         except Exception as e:
           print(str(e))
           
+  for i in range(len(lista_p)):
+    print(lista_p[i])
+          
   print("lista grabada")
-
+  
+  
 if __name__ == "__main__":
   main()

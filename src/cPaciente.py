@@ -1,4 +1,3 @@
-import datetime
 from src.eColor import Color
 
 class Paciente(object):
@@ -10,6 +9,9 @@ class Paciente(object):
         self.verifico_genero(genero)
         self.verifico_palabra_e(Enfermedad)
          
+    def __str__(self):
+        return(f"{self.dni}, {self.apellido}, {self.nombre}, {self.edad}, {self.genero}, {str(self.color)}, {self.contador}")
+      
          
     def triage(self,Enfermedad):
         if Enfermedad == "politraumatismo" or Enfermedad == "neumonia":
