@@ -56,9 +56,9 @@ class Paciente(object):
             raise Exception(f"La edad esta fuera de rango")
 
     def verifico_genero(self,genero):
-        if genero == 'F':
+        if genero == 'F' or genero == 0:
             self.genero = genero
-        elif genero == 'M':
+        elif genero == 'M' or genero == 1: #Al convertir los datos M paso a tener valores de 1 y F valores de 0
             self.genero = genero
         else:
             raise Exception(f"El genero es ivalido")
