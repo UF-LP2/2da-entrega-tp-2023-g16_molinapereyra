@@ -1,5 +1,9 @@
 from src.eColor import Color
-horaglobal
+#horaglobal=0 #cambiar
+#import time
+#aux = time.localtime()
+#horaglobal = aux.tm_hour*100+aux.tm_min
+#print(horaglobal)
 
 class Paciente(object):
     
@@ -8,7 +12,7 @@ class Paciente(object):
         self.verifico_palabra(Nombre, Apellido)
         self.verificar_edad(int(Edad))
         self.verifico_genero(Genero)
-        self.perdidaconciencia=Perdida_de_Conciencia
+        self.perdidaconciencia = Perdida_de_Conciencia
         self.respira=Respira
         self.movilidad=Movilidad
         self.dolor=Dolor
