@@ -1,4 +1,5 @@
 from src.eColor import Color
+horaglobal
 
 class Paciente(object):
     
@@ -14,7 +15,7 @@ class Paciente(object):
         self.Triage=Color.Blanco
         self.asignar_color()
         self.contar_atendido=10#por defecto todos tienen ese tiempo para ser atendidos en consult
-        
+        self.horario_ingreso=horaglobal
      
          
     def __str__(self):

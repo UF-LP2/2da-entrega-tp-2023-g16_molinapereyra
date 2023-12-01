@@ -1,5 +1,8 @@
 from enum import Enum
-
+import time
+import random
+from colletions import deque
+horaglobal=0 #cambiar
 class Color(Enum):
     Blanco = 1 #Color previo a triage
     Rojo = 2
@@ -7,15 +10,5 @@ class Color(Enum):
     Amarillo = 4
     Verde = 5
     Azul = 6
-    
-    def __str__(num):
-        if num == 2:
-            return "ROJO"
-        elif num == 3:
-            return "NARANJA"
-        elif num == 4:
-            return "AMARILLO"
-        elif num == 5:
-            return "VERDE"
-        else:
-            return "AZUL"
+    def __str__(self):
+        return self.name
