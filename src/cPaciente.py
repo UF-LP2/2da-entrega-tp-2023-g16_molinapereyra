@@ -1,4 +1,5 @@
 from src.eColor import Color
+from eColor import horaglobal
 #horaglobal=0 #cambiar
 #import time
 #aux = time.localtime()

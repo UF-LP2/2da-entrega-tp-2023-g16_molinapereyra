@@ -1,8 +1,8 @@
 from enum import Enum
-import random
-from colletions import deque
-horaglobal=0 #cambiar
 import time
+import random
+from collections import deque
+horaglobal=0 #cambiar
 aux = time.localtime()
 horaglobal = aux.tm_hour*100+aux.tm_min
 class Color(Enum):
