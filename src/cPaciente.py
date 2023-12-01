@@ -1,5 +1,5 @@
-from src.eColor import Color
-from eColor import horaglobal
+from src.eColor import *
+#from .eColor import horaglobal
 #horaglobal=0 #cambiar
 #import time
 #aux = time.localtime()
@@ -8,7 +8,7 @@ from eColor import horaglobal
 
 class Paciente(object):
     
-    def __init__(self, DNI, Nombre:str, Apellido:str, Edad:int, Genero:str,Perdida_de_Conciencia:bool,Respira:bool,Movilidad:bool,Dolor:bool):
+    def __init__(self, DNI, Nombre:str, Apellido:str, Edad:int, Genero:str,Perdida_de_Conciencia,Respira,Movilidad,Dolor):
         self.verifico_dni(int(DNI))
         self.verifico_palabra(Nombre, Apellido)
         self.verificar_edad(int(Edad))
@@ -17,14 +17,14 @@ class Paciente(object):
         self.respira=Respira
         self.movilidad=Movilidad
         self.dolor=Dolor
-        self.Triage=Color.Blanco
+        self.Triage = Color.Blanco
         self.asignar_color()
         self.contar_atendido=10#por defecto todos tienen ese tiempo para ser atendidos en consult
         self.horario_ingreso=horaglobal
      
          
     def __str__(self):
-        return(f"{self.dni}, {self.apellido}, {self.nombre}, {self.edad}, {self.genero}, {str(self.color)}, {self.contador}")
+        return(f"{self.dni}, {self.apellido}, {self.nombre}, {self.edad}, {self.genero}, {str(self.Triage)},")
       
          
 
@@ -36,30 +36,29 @@ class Paciente(object):
         else:
             self.dni = dni
     def asignar_color(self):
-        if self.respira==False:
+        if self.respira=='False':
             self.Triage=Color.Rojo
         else:
-            if self.perdidaconciencia==True:
-                if self.movilidad==False:
+            if self.perdidaconciencia=='True':
+                if self.movilidad=='False':
                     self.Triage=Color.Naranja
                 else:
-                    if self.dolor==True:
+                    if self.dolor=='True':
                         self.Triage=Color.Amarillo
                     else:
                         self.Triage=Color.Verde
             else:
-                if self.movilidad==False:
-                    if self.dolor==True:
+                if self.movilidad=='False':
+                    if self.dolor=='True':
                         self.Triage=Color.Naranja
                     else:
                         self.Triage=Color.Azul
-
-
-
-            
-        
-         
-       
+                else:
+                    if self.dolor=='True':
+                        self.Triage=Color.Verde
+                    else:
+                        self.Triage=Color.Azul
+                    
         
     def verifico_palabra(self, nombre, apellido):
         if type(nombre and apellido) != str: 

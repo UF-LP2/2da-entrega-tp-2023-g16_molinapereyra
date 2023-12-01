@@ -1,6 +1,6 @@
 
 def verifico_edad(edad):
-  if edad > 100 or edad <= 0:
+  if edad < 100 or edad >= 0:
     return True
   else:
     return False

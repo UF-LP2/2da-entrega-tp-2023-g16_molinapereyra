@@ -1,4 +1,4 @@
-import cPaciente
+import src.cPaciente
 import random
 from src.eColor import Color
 import time
