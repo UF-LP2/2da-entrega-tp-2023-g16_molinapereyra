@@ -13,23 +13,7 @@ class Paciente(object):
         return(f"{self.dni}, {self.apellido}, {self.nombre}, {self.edad}, {self.genero}, {str(self.color)}, {self.contador}")
       
          
-    def triage(self,Enfermedad):
-        if Enfermedad == "politraumatismo" or Enfermedad == "neumonia":
-            self.color = 2
-            self.contador = 0
-        elif Enfermedad == "bronquitis" or Enfermedad == "hemorragia digestiva" or Enfermedad == "isquemia" or Enfermedad == "convulsiones" or Enfermedad == "coma":
-            self.color = 3
-            self.contador = 10
-        elif Enfermedad == "dolor de estomago" or Enfermedad == "sinusitis" or Enfermedad == "alergias" or Enfermedad == "asma" or Enfermedad == "hipertension" or Enfermedad == "urgencias psiquiatricas" or Enfermedad == "artritis":
-            self.color = 4
-            self.contador = 60
-        elif Enfermedad == "esguince" or Enfermedad == "dolor de espalda" or Enfermedad == "migraña" or Enfermedad == "dolor de muela" or Enfermedad == "infeccion de oido" or Enfermedad == "nauseas":
-            self.color = 5
-            self.contador = 120
-        else:
-            self.color = 6 #Si no es ninguno de las lista pertenece al color azul
-            self.contador = 240
-            
+
     def verifico_dni(self, dni):
         if type(dni) != int:
             raise Exception(f"El DNI no es un numero entero ")
