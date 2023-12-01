@@ -2,12 +2,20 @@ from src.eColor import Color
 
 class Paciente(object):
     
-    def __init__(self, DNI, nombre:str, apellido:str, edad:int, genero:str,Enfermedad:str, color:Color, contador:int):
+    def __init__(self, DNI, Nombre:str, Apellido:str, Edad:int, Genero:str,Perdida_de_Conciencia:bool,Respira:bool,Movilidad:bool,Dolor:bool):
         self.verifico_dni(int(DNI))
-        self.verifico_palabra(nombre, apellido)
-        self.verificar_edad(int(edad))
-        self.verifico_genero(genero)
-        self.verifico_palabra_e(Enfermedad)
+        self.verifico_palabra(Nombre, Apellido)
+        self.verificar_edad(int(Edad))
+        self.verifico_genero(Genero)
+        self.perdidaconciencia=Perdida_de_Conciencia
+        self.respira=Respira
+        self.movilidad=Movilidad
+        self.dolor=Dolor
+        self.Triage=Color.Blanco
+        self.asignar_color()
+        self.contar_atendido=10#por defecto todos tienen ese tiempo para ser atendidos en consult
+        
+     
          
     def __str__(self):
         return(f"{self.dni}, {self.apellido}, {self.nombre}, {self.edad}, {self.genero}, {str(self.color)}, {self.contador}")
@@ -21,6 +29,31 @@ class Paciente(object):
             raise Exception(f"El DNI es menor a 0")
         else:
             self.dni = dni
+    def asignar_color(self):
+        if self.respira==False:
+            self.Triage=Color.Rojo
+        else:
+            if self.perdidaconciencia==True:
+                if self.movilidad==False:
+                    self.Triage=Color.Naranja
+                else:
+                    if self.dolor==True:
+                        self.Triage=Color.Amarillo
+                    else:
+                        self.Triage=Color.Verde
+            else:
+                if self.movilidad==False:
+                    if self.dolor==True:
+                        self.Triage=Color.Naranja
+                    else:
+                        self.Triage=Color.Azul
+
+
+
+            
+        
+         
+       
         
     def verifico_palabra(self, nombre, apellido):
         if type(nombre and apellido) != str: 
