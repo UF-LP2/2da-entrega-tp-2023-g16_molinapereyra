@@ -5,9 +5,9 @@ import random
 from collections import deque
 
 
-horaglobal = datetime.now().replace(hour = 23, minute = 0)
-timestamp = int(horaglobal.timestamp())
-#aux = time.localtime()
+#horaglobal = datetime.now().replace(hour = 23, minute = 0)
+#timestamp = int(horaglobal.timestamp())
+horaglobal = 2300 #definimos que el programa empieza a las 23hs
 #horaglobal = aux.tm_hour*100+aux.tm_min
 
 class Color(Enum):

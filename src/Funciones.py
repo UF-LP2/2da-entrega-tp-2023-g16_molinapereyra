@@ -6,7 +6,8 @@ def simulacion(listap):
     horaglobal.time()
     min_wait_time = 5
     max_wait_time = 10
-    
+
+    #cada un segundo llega un paciente nuevo
     for i in range(len(listap)):
         print(str(listap[i]))
         current_time = time.localtime()

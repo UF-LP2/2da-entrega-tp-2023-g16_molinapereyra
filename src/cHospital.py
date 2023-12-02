@@ -6,29 +6,29 @@ from src.cConsultorio import *
 class Hospital:
     def __init__(self):
         self.cola_pac= deque()
-        self.cola_rojo=[]
-        self.cola_naranja=[]
-        self.cola_amarillo=[]
-        self.cola_verde=[]
-        self.cola_azul=[]
-        self.listaconsult=[]
+        self.cola_rojo= deque()
+        self.cola_naranja=deque()
+        self.cola_amarillo=deque()
+        self.cola_verde=deque()
+        self.cola_azul=deque()
+        self.listaconsult=deque()
     def agregar_consultorio(self,consultorio):
-        self.listaconsult.append(consultorio)
-    def agregar_persona(self, paciente):
-        self.cola_pac.append(paciente)
+        self.listaconsult.appendleft(consultorio)
+    def agregar_persona(self,aux):
+        self.cola_pac.appendleft(aux)
 
     def ordenar_color(self):
-        paciente_aux=self.cola_pac.popleft()
-        if paciente_aux.Triage==Color.Rojo:
-            self.cola_rojo.append(paciente_aux)
+        paciente_aux=self.cola_pac.pop()
+        if paciente_aux.Triage == Color.Rojo:
+            self.cola_rojo.appendleft(paciente_aux)
         if paciente_aux.Triage == Color.Naranja:
-            self.cola_naranja.append(paciente_aux)
+            self.cola_naranja.appendleft(paciente_aux)
         if paciente_aux.Triage == Color.Amarillo:
-            self.cola_amarillo.append(paciente_aux)
+            self.cola_amarillo.appendleft(paciente_aux)
         if paciente_aux.Triage == Color.Verde:
-            self.cola_verde.append(paciente_aux)
+            self.cola_verde.appendleft(paciente_aux)
         if paciente_aux.Triage == Color.Azul:
-            self.cola_azul.append(paciente_aux)
+            self.cola_azul.appendleft(paciente_aux)
     def chequearabierto(self,paciente_aux):
         for i in range(len(self.listaconsult)):
               self.listaconsult[i].revisar_hora()
@@ -37,7 +37,7 @@ class Hospital:
 
     def procesar_personas(self):
         while self.cola_pac:
-             paciente = self.cola_pac.popleft()
+             paciente = self.cola_pac.pop()
              tiempo_espera = (time.time() / 60) - paciente.horario_ingreso
              print(f"Persona entrada a las {paciente.horario_ingreso} esperó {tiempo_espera:.2f} minutos.")
              time.sleep(random.uniform(1, self.velocidad_salida))
@@ -51,11 +51,11 @@ class Hospital:
                  raise Exception(f"Tiempo de espera SUPERADO")
 
     def atender(self):
-        if self.cola_rojo == None:
-             if self.cola_naranja == None:
-                 if self.cola_amarillo == None:
-                     if self.cola_verde == None:
-                         if self.cola_azul == None:
+        if len(self.cola_rojo) == 0:
+             if len(self.cola_naranja) == 0:
+                 if len(self.cola_amarillo) == 0:
+                     if len(self.cola_verde) == 0:
+                         if len(self.cola_azul) == 0:
                              return
                          else:
                              # revisar hora del consutorio, si esta abierto
@@ -87,4 +87,28 @@ class Hospital:
                  self.cola_rojo[i] = self.cola_rojo[i + 1]  # reorganizamos la cola, movemos los pacientes
              return
 
-             #falta defprocesarpersonas y atender
+    def imprimir_cola(self):
+        for paciente in self.cola_pac:
+            print(paciente)
+
+    def imprimir_colaROJO(self):
+        print("Cola ROJO")
+        for paciente in self.cola_rojo:
+            print(paciente)
+    def imprimir_colaNARANJA(self):
+        print("Cola NARANJA:")
+        for paciente in self.cola_naranja:
+            print(paciente)
+    def imprimir_colaAMARILLO(self):
+        print("cola AMARILLO:")
+        for paciente in self.cola_amarillo:
+            print(paciente)
+
+    def imprimir_colaVERDE(self):
+        print("cola VERDE")
+        for paciente in self.cola_verde:
+            print(paciente)
+    def imprimir_colaAZUL(self):
+        print("cola AZUL")
+        for paciente in self.cola_azul:
+            print(paciente)
