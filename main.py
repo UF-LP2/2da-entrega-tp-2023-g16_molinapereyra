@@ -1,5 +1,5 @@
 import csv
-from Funciones import simulacion
+from src.Funciones import *
 from src.cHospital import *
 #from src.cPaciente import Paciente
 #from src.Funciones import simulacion
@@ -8,7 +8,7 @@ from src.cHospital import *
 
 def main() -> None:
   lista_p = []
-  with open("Triage.csv", newline='') as csvfile:
+  with open("Triage (1).csv", newline='') as csvfile:
     lector = csv.reader(csvfile, delimiter=',', quotechar='|')
     next(csvfile, None)
     for row in lector:
@@ -17,7 +17,14 @@ def main() -> None:
         lista_p.append(aux)
       except Exception as e:
         print(str(e))
-  simulacion(lista_p)
+        
+    #hospital = Hospital()
+    #simulación de la cola del triage
+    
+  
+  #start_time = simulacion(lista_p)
+  #print("Hora en datetime: ", str(horaglobal))
+  print("Hora global modificada: ", timestamp)
   #for i in range(len(lista_p)):
   #  print(str(lista_p[i]))
   
