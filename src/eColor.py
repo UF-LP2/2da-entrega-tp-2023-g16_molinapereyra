@@ -2,9 +2,12 @@ from enum import Enum
 import time
 import random
 from collections import deque
+
+
 horaglobal=0 #cambiar
 aux = time.localtime()
 horaglobal = aux.tm_hour*100+aux.tm_min
+
 class Color(Enum):
     Blanco = 1 #Color previo a triage
     Rojo = 2

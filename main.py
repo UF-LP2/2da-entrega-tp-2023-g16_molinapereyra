@@ -1,6 +1,8 @@
 import csv
-from src.cPaciente import Paciente
-from src.Funciones import simulacion
+from Funciones import simulacion
+from src.cHospital import *
+#from src.cPaciente import Paciente
+#from src.Funciones import simulacion
 
 
 
@@ -15,7 +17,7 @@ def main() -> None:
         lista_p.append(aux)
       except Exception as e:
         print(str(e))
-          
+  simulacion(lista_p)
   #for i in range(len(lista_p)):
   #  print(str(lista_p[i]))
   

@@ -1,8 +1,9 @@
-import src.cPaciente
 import random
 from src.eColor import Color
 import time
 from collections import deque
+from src.cConsultorio import *
+
 class Hospital:
     def __init__(self, velocidad_salida):
         self.cola_pac= deque()

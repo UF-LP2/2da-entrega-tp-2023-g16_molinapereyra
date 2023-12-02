@@ -1,4 +1,5 @@
-from eColor import horaglobal
+#from eColor import horaglobal
+from src.cPaciente import *
 
 def _init_(self, Turno):
     self.PacienteAtendido = None

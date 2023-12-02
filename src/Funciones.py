@@ -1,5 +1,4 @@
 from asyncio.windows_events import NULL
-from src.cPaciente import Paciente
 import time
 
 
