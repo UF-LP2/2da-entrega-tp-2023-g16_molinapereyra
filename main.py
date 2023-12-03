@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 
 def main() -> None:
   lista_p = []
-  with open("Triage (1).csv", newline='') as csvfile:
+  with open("Triage.csv", newline='') as csvfile:
     lector = csv.reader(csvfile, delimiter=',', quotechar='|')
     next(csvfile, None)
     for row in lector:

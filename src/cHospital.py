@@ -61,24 +61,22 @@ class Hospital:
                              # revisar hora del consutorio, si esta abierto
                              self.chequearabierto(self.cola_azul[0])  # mando al paciente al consultorio
                              for i in range(len(self.cola_azul) - 1):
-                                 self.cola_rojo[i] = self.cola_azul[
-                                     i + 1]  # reorganizamos la cola, movemos los pacientes
+                                 self.cola_azul[i] = self.cola_azul[i + 1]  # reorganizamos la cola, movemos los pacientes
                              return
                      else:
                          self.chequearabierto(self.cola_verde[0])  # mando al paciente al consultorio
                          for i in range(len(self.cola_verde) - 1):
-                             self.cola_rojo[i] = self.cola_verde[
-                                 i + 1]  # reorganizamos la cola, movemos los pacientes
+                             self.cola_verde[i] = self.cola_verde[i + 1]  # reorganizamos la cola, movemos los pacientes
                          return
                  else:
                      self.chequearabierto(self.cola_amarillo[0])  # mando al paciente al consultorio que este abierto
                      for i in range(len(self.cola_amarillo) - 1):
-                         self.cola_rojo[i] = self.cola_amarillo[i + 1]  # reorganizamos la cola, movemos los pacientes
+                         self.cola_amarillo[i] = self.cola_amarillo[i + 1]  # reorganizamos la cola, movemos los pacientes
                      return
              else:
                  self.chequearabierto(self.cola_naranja[0])  # mando al paciente al consultorio
                  for i in range(len(self.cola_naranja) - 1):
-                     self.cola_rojo[i] = self.cola_naranja[i + 1]  # reorganizamos la cola, movemos los pacientes
+                     self.cola_rojo[i] = self.cola_rojo[i + 1]  # reorganizamos la cola, movemos los pacientes
                  return
 
         else:
