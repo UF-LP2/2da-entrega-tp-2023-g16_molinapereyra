@@ -85,10 +85,3 @@ class Paciente(object):
         else:
             raise Exception(f"El genero es ivalido")
             
-
-    def verifico_palabra_e(self, Enfermedad):
-        if type(Enfermedad) != str or ( Enfermedad) == "!#$%&(/)=?¡¬|°[]+*":
-            raise Exception(f"La enfermedad no puede ser leida")
-        else:
-            self.Enfermedad = Enfermedad
-            self.triage(Enfermedad)
