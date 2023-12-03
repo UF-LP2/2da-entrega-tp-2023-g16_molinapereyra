@@ -9,31 +9,36 @@ class Consultorio:
 
     def ingresaPaciente(self, Paciente_aux):
         self.PacienteAtendido = Paciente_aux
-        self.PacienteAtendido.contador_atendido = self.PacienteAtendido.contador_atendido - 1  # disminuimos el contador
-
+        if self.PacienteAtendido.contador_atendido != 0:
+            self.PacienteAtendido.contador_atendido = self.PacienteAtendido.contador_atendido - 1  # disminuimos el contador
+            self.ingresaPaciente(self.PacienteAtendido) #recursivo hasta que sea 0
+        else:
+            self.PacienteAtendido= None #elimino el paciente porque ya esta atendido
 
     def revisar_hora(self):
+        hora=horaglobal.hour
+
         if self.turno == 1:
         # 23 a 6
-            if horaglobal >= 2300 and horaglobal <= 600:
+            if hora >= 23 and hora <= 6:
                 abierto = True
             else:
                 abierto = False
         if self.turno == 2:
         # 6 a 10
-            if horaglobal >= 600 and horaglobal <= 1000:
+            if hora >= 6 and hora <= 10:
                 abierto = True
             else:
                 abierto = False
         if self.turno == 3:
         # 10 a 16
-            if horaglobal >= 1000 and horaglobal <= 1600:
+            if hora >= 10 and hora <= 16:
                 abierto = True
             else:
                 abierto = False
         if self.turno == 4:
         # 16 a 23
-            if horaglobal > 1600 and horaglobal <= 2300:
+            if hora > 16 and hora <= 23:
                 abierto = True
             else:
                 abierto = False

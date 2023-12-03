@@ -48,27 +48,28 @@ def main() -> None:
     tiempo_inicio = datetime.now()
     i=0
     aux=0
+    hora_actual = datetime.now()
+    print(hora_actual)
     while True:
-
-        #while (datetime.now() - tiempo_inicio) < timedelta(seconds=duracion_simulacion):
-        for i in range(aux,aux+10):
-        # Obtener la hora y minutos actuales
-            hora_actual = datetime.now()
-        # Pausa entre cada iteración para simular el paso del tiempo
-            mi_hospital.agregar_persona(lista_p[i])
-            #print(time.sleep(1))
-        #se repite cada cierto tiempo de ejecucion
-        mi_hospital.imprimir_cola()
-        mi_hospital.imprimir_colaROJO()
-        mi_hospital.imprimir_colaNARANJA()
-        mi_hospital.imprimir_colaAMARILLO()
-        mi_hospital.imprimir_colaVERDE()
-        mi_hospital.imprimir_colaAZUL()
+        mi_hospital.agregar_persona(lista_p[i])
         mi_hospital.ordenar_color() #ordena la cola por color del triage
         mi_hospital.atender()
-        print(time.sleep(2))
-
-        if aux >= len(lista_p):
+        time.sleep(2) # Pausa entre cada iteración para simular el paso del tiempo
+        #manejo de tiempo:
+        hora=hora_actual.hour
+        dia=hora_actual.day
+        minuto=hora_actual.minute + 1
+        if minuto>=59:
+          hora_actual=hora_actual.replace(hour=hora+1,minute=0)
+        else:
+          hora_actual=hora_actual.replace(minute=minuto) #el tiempo pasa cada 10 minutos
+        if hora==23:
+          print(hora_actual)
+          hora_actual = hora_actual.replace(day=dia+1,hour=0, minute=0)
+        #print(hora_actual)
+        i=i+1
+        horaglobal=hora_actual
+        if i >= len(lista_p):
             break
     #simulacion(lista_p)
     #simulación de la cola del triage

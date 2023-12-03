@@ -1,3 +1,4 @@
+import os
 import random
 import time
 from collections import deque
@@ -12,9 +13,11 @@ class Hospital:
         self.cola_verde=deque()
         self.cola_azul=deque()
         self.listaconsult=deque()
+        self.contar=0
     def agregar_consultorio(self,consultorio):
         self.listaconsult.appendleft(consultorio)
     def agregar_persona(self,aux):
+        aux.asignar_color()
         self.cola_pac.appendleft(aux)
 
     def ordenar_color(self):
@@ -34,6 +37,7 @@ class Hospital:
               self.listaconsult[i].revisar_hora()
               if self.listaconsult[i].abierto==True:
                   self.listaconsult[i].ingresaPaciente(paciente_aux)
+                  return
 
     def procesar_personas(self):
         while self.cola_pac:
@@ -62,51 +66,65 @@ class Hospital:
                              self.chequearabierto(self.cola_azul[0])  # mando al paciente al consultorio
                              for i in range(len(self.cola_azul) - 1):
                                  self.cola_azul[i] = self.cola_azul[i + 1]  # reorganizamos la cola, movemos los pacientes
+                             self.contar=self.contar+1
                              return
                      else:
                          self.chequearabierto(self.cola_verde[0])  # mando al paciente al consultorio
                          for i in range(len(self.cola_verde) - 1):
                              self.cola_verde[i] = self.cola_verde[i + 1]  # reorganizamos la cola, movemos los pacientes
+                         self.contar = self.contar + 1
                          return
                  else:
                      self.chequearabierto(self.cola_amarillo[0])  # mando al paciente al consultorio que este abierto
                      for i in range(len(self.cola_amarillo) - 1):
                          self.cola_amarillo[i] = self.cola_amarillo[i + 1]  # reorganizamos la cola, movemos los pacientes
+                     self.contar = self.contar + 1
                      return
              else:
                  self.chequearabierto(self.cola_naranja[0])  # mando al paciente al consultorio
                  for i in range(len(self.cola_naranja) - 1):
                      self.cola_rojo[i] = self.cola_rojo[i + 1]  # reorganizamos la cola, movemos los pacientes
+                 self.contar = self.contar + 1
                  return
 
         else:
              self.chequearabierto(self.cola_rojo[0])  # mando al paciente al consultorio que este abierto
              for i in range(len(self.cola_rojo) - 1):
                  self.cola_rojo[i] = self.cola_rojo[i + 1]  # reorganizamos la cola, movemos los pacientes
+             self.contar = self.contar + 1
              return
 
     def imprimir_cola(self):
         for paciente in self.cola_pac:
             print(paciente)
-
+        os.system("clear")
     def imprimir_colaROJO(self):
         print("Cola ROJO")
         for paciente in self.cola_rojo:
             print(paciente)
+        os.system("clear")
+
     def imprimir_colaNARANJA(self):
         print("Cola NARANJA:")
         for paciente in self.cola_naranja:
             print(paciente)
+        os.system("clear")
+
     def imprimir_colaAMARILLO(self):
         print("cola AMARILLO:")
         for paciente in self.cola_amarillo:
             print(paciente)
+        os.system("clear")
+
 
     def imprimir_colaVERDE(self):
         print("cola VERDE")
         for paciente in self.cola_verde:
             print(paciente)
+        os.system("clear")
+
     def imprimir_colaAZUL(self):
         print("cola AZUL")
         for paciente in self.cola_azul:
             print(paciente)
+        os.system("clear")
