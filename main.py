@@ -10,7 +10,7 @@ from src.cHospital import *
 
 def main() -> None:
   lista_p = []
-  with open("Triage (2).csv", newline='') as csvfile:
+  with open("Triage (3).csv", newline='') as csvfile:
     lector = csv.reader(csvfile, delimiter=',', quotechar='|')
     next(csvfile, None)
     for row in lector:
