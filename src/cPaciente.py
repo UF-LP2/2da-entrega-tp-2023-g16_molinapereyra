@@ -72,7 +72,7 @@ class Paciente(object):
     def verificar_edad(self, edad):
         if type(edad) != int:
             raise Exception(f"La edad no es un numero entero ")
-        elif edad <= 100 and edad > 0:
+        elif edad <= 110 and edad >= 0:
             self.edad = edad
         else:
             raise Exception(f"La edad esta fuera de rango")

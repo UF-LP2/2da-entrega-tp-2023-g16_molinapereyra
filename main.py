@@ -49,11 +49,11 @@ def main() -> None:
     aux=0
     hora_actual = datetime.now()
     print(hora_actual)
-    cont_ingreso_h=3
+    cont_ingreso_h=2
     while True:
         horaglobal=hora_actual
         print((hora_actual))
-        if cont_ingreso_h == 3: #cada 3 minutos agrego un paciente
+        if cont_ingreso_h == 2: #cada 3 minutos agrego un paciente
             mi_hospital.agregar_persona(lista_p[i])
             mi_hospital.ordenar_color() #ordena la cola por color del triage
             cont_ingreso_h=0
