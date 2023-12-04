@@ -5,6 +5,7 @@ class Consultorio:
         self.PacienteAtendido = None
         self.abierto = False
         self.turno = Turno  # turno1,2,3,4
+        self.PacienteEnEspera = None #en caso de haber un rojo, el paciente atendido queda en espera
 
     def getAbierto(self):
         return self.abierto
@@ -12,6 +13,9 @@ class Consultorio:
     def ingresaPaciente(self, Paciente_aux):
         self.PacienteAtendido = Paciente_aux
 
+    def cambiarPac(self,Pac_aux):
+        self.PacienteEnEspera= self.PacienteAtendido
+        self.PacienteAtendido=Pac_aux #en caso de que sea rojo se usa esta funcion
 
     def atenderPac(self):
         if self.PacienteAtendido ==None:

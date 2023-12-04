@@ -39,6 +39,12 @@ class Hospital:
                   return i #retorna el consultorio a donde va a ingregar el paciente
         return -1
 
+    def chequearAbiertoROJO(self):
+        i = 0
+        for i in range(len(self.listaconsult)):
+            if self.listaconsult[i].revisar_hora() == True:
+                return i #siempre va a haber uno abierto
+
     def procesar_personas(self,paciente):
              diferencia = horaglobal - paciente.hora_ingreso #calculamos diferencia de hora para saber el tiempo de espera
              tsecs= diferencia.total_seconds()
@@ -55,9 +61,17 @@ class Hospital:
              if paciente.Triage == Color.Azul and minutos > 240:
                  raise Exception(f"Tiempo de espera SUPERADO")
                  return False
+    def modificarPAcientes(self):
+        i=0
+        for i in range(len(self.listaconsult)):
+            if self.listaconsult[i].PacienteEnEspera != None: #en caso de que haya un paciente en espero, lo paso a paciente atendido
+                self.listaconsult[i].PacienteAtendido = self.listaconsult[i].PacienteEnEspera
+                self.listaconsult[i].PacienteEnEspera= None
+
 
     def atender(self):
         self.disminuir_tiempo_consult()
+        self.modificarPAcientes()
         aux = self.chequearabierto()
         if len(self.cola_rojo) == 0:
              if len(self.cola_naranja) == 0:
@@ -116,9 +130,15 @@ class Hospital:
         else:
             if aux != -1:  # mando al paciente al consultorio
                 paciente = self.cola_rojo.pop()
-                if self.procesar_personas(paciente) == False:
-                    return
                 self.listaconsult[aux].ingresaPaciente(paciente)
+                for i in range(len(self.cola_rojo) - 1):
+                    self.cola_rojo[i] = self.cola_rojo[i + 1]  # reorganizamos la cola, movemos los pacientes
+                self.contar = self.contar + 1
+                return
+            else:# en caso que este ocupado, un paciente queda en espera
+                aux1=self.chequearAbiertoROJO()
+                paciente = self.cola_rojo.pop()
+                self.listaconsult[aux1].cambiarPac(paciente)
                 for i in range(len(self.cola_rojo) - 1):
                     self.cola_rojo[i] = self.cola_rojo[i + 1]  # reorganizamos la cola, movemos los pacientes
                 self.contar = self.contar + 1

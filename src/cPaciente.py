@@ -36,6 +36,7 @@ class Paciente(object):
     def asignar_color(self):
         if self.respira=='False':
             self.Triage=Color.Rojo
+            self.contar_atendido=1 #el rojo tiene que entrar y salir en momento
         else:
             if self.perdidaconciencia=='True':
                 if self.movilidad=='False':

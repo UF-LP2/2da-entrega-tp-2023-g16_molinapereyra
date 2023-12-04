@@ -10,7 +10,7 @@ from src.cHospital import *
 
 def main() -> None:
   lista_p = []
-  with open("Triage.csv", newline='') as csvfile:
+  with open("Triage (2).csv", newline='') as csvfile:
     lector = csv.reader(csvfile, delimiter=',', quotechar='|')
     next(csvfile, None)
     for row in lector:
@@ -63,7 +63,7 @@ def main() -> None:
         print(mi_hospital.imprimir_colaVERDE())
         print(mi_hospital.imprimir_colaNARANJA())
         mi_hospital.atender()
-        time.sleep(2) # Pausa entre cada iteración para simular el paso del tiempo
+        time.sleep(3) # Pausa entre cada iteración para simular el paso del tiempo
         #manejo de tiempo:
         hora=hora_actual.hour
         dia=hora_actual.day
