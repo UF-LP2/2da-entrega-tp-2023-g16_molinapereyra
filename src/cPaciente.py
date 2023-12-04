@@ -1,10 +1,12 @@
 from src.eColor import *
+from datetime import datetime, timedelta
+
 #from .eColor import horaglobal
 #horaglobal=0 #cambiar
 #import time
 #aux = time.localtime()
 #horaglobal = aux.tm_hour*100+aux.tm_min
-horaglobal=0 #da la hora en hora y minutos
+horaglobal=datetime.now() #da la hora en hora y minutos
 class Paciente(object):
     
     def __init__(self, DNI, Nombre:str, Apellido:str, Edad:int, Genero:str,Perdida_de_Conciencia,Respira,Movilidad,Dolor):
@@ -18,12 +20,11 @@ class Paciente(object):
         self.dolor=Dolor
         self.Triage = Color.Blanco
         self.contar_atendido=10#por defecto todos tienen ese tiempo para ser atendidos en consult
-        self.tiempoespera=0
+        self.hora_ingreso=0
          
     def __str__(self):
         return(f"{self.dni}, {self.apellido}, {self.nombre}, {self.edad}, {self.genero}, {str(self.Triage)},")
       
-         
 
     def verifico_dni(self, dni):
         if type(dni) != int:
@@ -39,30 +40,24 @@ class Paciente(object):
             if self.perdidaconciencia=='True':
                 if self.movilidad=='False':
                     self.Triage=Color.Naranja
-                    self.tiempoespera=10
                 else:
                     if self.dolor=='True':
                         self.Triage=Color.Amarillo
-                        self.tiempoespera=60
                     else:
                         self.Triage=Color.Verde
-                        self.tiempoespera=120
             else:
                 if self.movilidad=='False':
                     if self.dolor=='True':
                         self.Triage=Color.Naranja
-                        self.tiempoespera = 10
                     else:
                         self.Triage=Color.Azul
-                        self.tiempoespera=240
                 else:
                     if self.dolor=='True':
                         self.Triage=Color.Verde
-                        self.tiempoespera = 120
                     else:
                         self.Triage=Color.Azul
-                        self.tiempoespera = 240
-                    
+        self.hora_ingreso=horaglobal
+
         
     def verifico_palabra(self, nombre, apellido):
         if type(nombre and apellido) != str: 

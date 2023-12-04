@@ -5,7 +5,6 @@ from src.Funciones import *
 from src.cHospital import *
 #from src.cPaciente import Paciente
 #from src.Funciones import simulacion
-from datetime import datetime, timedelta
 
 
 
@@ -50,15 +49,26 @@ def main() -> None:
     aux=0
     hora_actual = datetime.now()
     print(hora_actual)
+    cont_ingreso_h=3
     while True:
-        mi_hospital.agregar_persona(lista_p[i])
-        mi_hospital.ordenar_color() #ordena la cola por color del triage
+        horaglobal=hora_actual
+        print((hora_actual))
+        if cont_ingreso_h == 3: #cada 3 minutos agrego un paciente
+            mi_hospital.agregar_persona(lista_p[i])
+            mi_hospital.ordenar_color() #ordena la cola por color del triage
+            cont_ingreso_h=0
+        print(mi_hospital.imprimir_colaROJO())
+        print(mi_hospital.imprimir_colaAMARILLO())
+        print(mi_hospital.imprimir_colaAZUL())
+        print(mi_hospital.imprimir_colaVERDE())
+        print(mi_hospital.imprimir_colaNARANJA())
         mi_hospital.atender()
         time.sleep(2) # Pausa entre cada iteración para simular el paso del tiempo
         #manejo de tiempo:
         hora=hora_actual.hour
         dia=hora_actual.day
         minuto=hora_actual.minute + 1
+        cont_ingreso_h= cont_ingreso_h+1
         if minuto>=59:
           hora_actual=hora_actual.replace(hour=hora+1,minute=0)
         else:
@@ -68,7 +78,6 @@ def main() -> None:
           hora_actual = hora_actual.replace(day=dia+1,hour=0, minute=0)
         #print(hora_actual)
         i=i+1
-        horaglobal=hora_actual
         if i >= len(lista_p):
             break
     #simulacion(lista_p)
