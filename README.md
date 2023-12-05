@@ -2,7 +2,7 @@
 [![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-7f7980b617ed060a017424585567c406b6ee15c891e84e1186181d67ecf80aa0.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=12558224)
 #G***16***_***Datenis******Molina******Pereyra2***_TP***1/2/../Final***
 En este trabajo intentamos resolver el problema de sistema de atencion de Triage de hospital.Para resolverlo nosotros planteamos un paciente con 4 sintomas: dolor, respira, movilidad, perdida de conciencia.Tenemos un hospital que con una cierta frecuencia van entrando los pacientes, se le realiza el Triage utilizando un arbol de desicion para colocarle su color.Luego lo separamos en colas de acuerdo al color.Por ultimo atendemos los pacientes, en orden, primero los rojo, si no hay rojos continuo con la proxima cola de acuerdo a la gravedad.Para atender al paciente nos fijamos que consultorios se encuentran abierto segun el turno y que este vacio para que pueda entrar al consultorio.Los pacientes van tardar 10 minutos dentro del consultorio excepto los rojo que entran y salen, debido a su complejidad son trasladados a otra parte.
-Si llega un paciente rojo que es de atencion inmediata y todos los consultorios estan ocupados.Colocamos al paciente que estaba en el consultorio en espera, y atendemos al rojo.Una vez que sale el rojo, continuamos atendiendo al paciente en espera.
+Si llega un paciente rojo que es de atencion inmediata y todos los consultorios estan ocupados, colocamos al paciente que estaba en el consultorio en espera, y atendemos al rojo.Una vez que sale el rojo, continuamos atendiendo al paciente en espera.
 ## Integrantes
 - Lucas Datenis
 - Lucia Molina Pavlicka
