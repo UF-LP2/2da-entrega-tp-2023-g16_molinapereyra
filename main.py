@@ -3,8 +3,7 @@ import time
 
 from src.Funciones import *
 from src.cHospital import *
-#from src.cPaciente import Paciente
-#from src.Funciones import simulacion
+
 
 
 
