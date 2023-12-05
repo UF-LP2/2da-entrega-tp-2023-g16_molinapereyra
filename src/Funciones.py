@@ -1,7 +1,7 @@
 import time
 import random
 from src.eColor import *
-
+#creo q este .py hay que borrar
 def simulacion(listap):
     horaglobal.time()
     min_wait_time = 5

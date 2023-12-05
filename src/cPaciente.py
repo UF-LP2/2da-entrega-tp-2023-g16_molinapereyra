@@ -1,12 +1,6 @@
 from src.eColor import *
 from datetime import datetime, timedelta
-
-#from .eColor import horaglobal
-#horaglobal=0 #cambiar
-#import time
-#aux = time.localtime()
-#horaglobal = aux.tm_hour*100+aux.tm_min
-horaglobal=datetime.now() #da la hora en hora y minutos
+horaglobal=datetime.now() #da la hora en hora, minutos, dia, mes,etc
 class Paciente(object):
     
     def __init__(self, DNI, Nombre:str, Apellido:str, Edad:int, Genero:str,Perdida_de_Conciencia,Respira,Movilidad,Dolor):

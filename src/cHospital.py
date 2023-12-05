@@ -13,7 +13,7 @@ class Hospital:
         self.cola_verde=deque()
         self.cola_azul=deque()
         self.listaconsult=[]
-        self.contar=0
+
     def agregar_consultorio(self,consultorio):
         self.listaconsult.append(consultorio)
     def agregar_persona(self,aux):
@@ -88,10 +88,10 @@ class Hospital:
                                  if self.procesar_personas(paciente) == False:
                                      return
                                  self.listaconsult[aux].ingresaPaciente(paciente)
-                                 for i in range(len(self.cola_azul) - 1):
-                                    self.cola_azul[i] = self.cola_azul[i + 1]  # reorganizamos la cola, movemos los pacientes
-                                 self.contar=self.contar+1
-                                 return
+                                # for i in range(len(self.cola_azul) - 1):
+                                 #   self.cola_azul[i] = self.cola_azul[i + 1]  # reorganizamos la cola, movemos los pacientes
+
+                                 #return
                              return
                      else:
                          if aux != -1:  # mando al paciente al consultorio
@@ -99,10 +99,9 @@ class Hospital:
                              if self.procesar_personas(paciente) == False:
                                  return
                              self.listaconsult[aux].ingresaPaciente(paciente)
-                             for i in range(len(self.cola_verde) - 1):
-                                 self.cola_verde[i] = self.cola_verde[i + 1]  # reorganizamos la cola, movemos los pacientes
-                             self.contar = self.contar + 1
-                             return
+                             #for i in range(len(self.cola_verde) - 1):
+                              #   self.cola_verde[i] = self.cola_verde[i + 1]  # reorganizamos la cola, movemos los pacientes
+                             #return
                          return
                  else:
                      if aux != -1:  # mando al paciente al consultorio
@@ -110,10 +109,9 @@ class Hospital:
                          if self.procesar_personas(paciente) == False:
                              return
                          self.listaconsult[aux].ingresaPaciente(paciente)
-                         for i in range(len(self.cola_amarillo) - 1):
-                             self.cola_amarillo[i] = self.cola_amarillo[i + 1]  # reorganizamos la cola, movemos los pacientes
-                         self.contar = self.contar + 1
-                         return
+                        # for i in range(len(self.cola_amarillo) - 1):
+                          #   self.cola_amarillo[i] = self.cola_amarillo[i + 1]  # reorganizamos la cola, movemos los pacientes
+                         #return
                      return
              else:
                  if aux != -1:  # mando al paciente al consultorio
@@ -121,28 +119,28 @@ class Hospital:
                      if self.procesar_personas(paciente) == False:
                          return
                      self.listaconsult[aux].ingresaPaciente(paciente)
-                     for i in range(len(self.cola_naranja) - 1):
-                         self.cola_naranja[i] = self.cola_naranja[i + 1]  # reorganizamos la cola, movemos los pacientes
-                     self.contar = self.contar + 1
-                     return
+                     #for i in range(len(self.cola_naranja) - 1):
+                         #self.cola_naranja[i] = self.cola_naranja[i + 1]  # reorganizamos la cola, movemos los pacientes
+
+                     #return
                  return
 
         else:
             if aux != -1:  # mando al paciente al consultorio
                 paciente = self.cola_rojo.pop()
                 self.listaconsult[aux].ingresaPaciente(paciente)
-                for i in range(len(self.cola_rojo) - 1):
-                    self.cola_rojo[i] = self.cola_rojo[i + 1]  # reorganizamos la cola, movemos los pacientes
-                self.contar = self.contar + 1
+                #for i in range(len(self.cola_rojo) - 1):
+                 #   self.cola_rojo[i] = self.cola_rojo[i + 1]  # reorganizamos la cola, movemos los pacientes
+
                 return
             else:# en caso que este ocupado, un paciente queda en espera
                 aux1=self.chequearAbiertoROJO()
                 paciente = self.cola_rojo.pop()
                 self.listaconsult[aux1].cambiarPac(paciente)
-                for i in range(len(self.cola_rojo) - 1):
-                    self.cola_rojo[i] = self.cola_rojo[i + 1]  # reorganizamos la cola, movemos los pacientes
-                self.contar = self.contar + 1
-                return
+                #for i in range(len(self.cola_rojo) - 1):
+                  #  self.cola_rojo[i] = self.cola_rojo[i + 1]  # reorganizamos la cola, movemos los pacientes
+
+                #return
             return
 
     def disminuir_tiempo_consult(self):
@@ -153,7 +151,7 @@ class Hospital:
     def imprimir_cola(self):
         for paciente in self.cola_pac:
             print(paciente)
-        os.system("clear")
+
     def imprimir_colaROJO(self):
         print("Cola ROJO")
         for paciente in self.cola_rojo:

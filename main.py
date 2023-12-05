@@ -40,9 +40,6 @@ def main() -> None:
     mi_hospital.agregar_consultorio(mi_consultorio9)
     mi_hospital.agregar_consultorio(mi_consultorio10)
 
-
-
-    duracion_simulacion=10
     tiempo_inicio = datetime.now()
     i=0
     aux=0
@@ -52,7 +49,7 @@ def main() -> None:
     while True:
         horaglobal=hora_actual
         print((hora_actual))
-        if cont_ingreso_h == 2: #cada 3 minutos agrego un paciente
+        if cont_ingreso_h == 2: #cada 2 minutos agrego un paciente
             mi_hospital.agregar_persona(lista_p[i])
             mi_hospital.ordenar_color() #ordena la cola por color del triage
             cont_ingreso_h=0
@@ -79,16 +76,9 @@ def main() -> None:
         i=i+1
         if i >= len(lista_p):
             break
-    #simulacion(lista_p)
-    #simulación de la cola del triage
-    
+
   print("hora inicio: ",tiempo_inicio)
-  #start_time = simulacion(lista_p)
-  #print("Hora en datetime: ", str(horaglobal))
-  #print("Hora global modificada: ", timestamp)
-  #for i in range(len(lista_p)):
-  #  print(str(lista_p[i]))
-  hospital = Hospital()
+
 
 
 
