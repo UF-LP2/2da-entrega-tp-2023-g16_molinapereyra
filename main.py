@@ -1,9 +1,8 @@
 import csv
 import time
 
-from src.Funciones import *
+#from src.Funciones import *
 from src.cHospital import *
-
 
 
 
