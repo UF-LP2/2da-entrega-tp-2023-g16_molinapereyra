@@ -1,92 +1,59 @@
 import sys
-from PyQt6.QtWidgets import (QApplication, QWidget, QVBoxLayout, QPushButton, QLabel, QListWidget, QTextEdit, QGroupBox)
-from PyQt6.QtCore import Qt, QDateTime, QTimer
-from main import *
+import random
+from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QHBoxLayout
+from PyQt6.QtCore import QTimer
 
-
-class VentanaHospital(QWidget):
+class ColorSorter(QWidget):
     def __init__(self):
         super().__init__()
-        self.initUI()
-    def initUI(self):
 
-        #mostrar la hora
-        hora=horaglobal.hour
-        minutos=horaglobal.minute
-        layout = QVBoxLayout()
+        self.colors = []
+        self.colors_count = {'red': 0, 'orange': 0, 'yellow': 0, 'green': 0, 'blue': 0}
 
-        self.label = QLabel(self)
-        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.label.setText(f'Hora: {hora:02d}:{minutos:02d}')  # Formatear el texto
-        layout.addWidget(self.label)
+        self.init_ui()
 
-        self.setLayout(layout)
-        #sys.exit(app.exec())
+    def init_ui(self):
+        self.setWindowTitle('Color Sorter')
 
-        #mostrar la lista
-        #layout = QVBoxLayout()
+        main_layout = QHBoxLayout()
 
-        # Crear un QTextEdit para mostrar la información de los pacientes
-        self.text_edit = QTextEdit(self)
-        layout.addWidget(self.text_edit)
-        self.setLayout(layout)
-        pacientes = self.leer_pacientes_desde_archivo()
-        self.mostrar_pacientes(pacientes)
+        for color in self.colors_count:
+            button_layout = QVBoxLayout()
+            main_layout.addLayout(button_layout)
 
-    def leer_pacientes_desde_archivo(self):
-        pacientes = []
-        with open("Triage (3).csv", newline='') as csvfile:
-            lector = csv.reader(csvfile, delimiter=',', quotechar='|')
-            next(csvfile, None)
-            for row in lector:
-                try:
-                    paciente_info = Paciente(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8])
-                    pacientes.append(paciente_info)
-                except Exception as e:
-                    print(str(e))
-            return pacientes
+            button = QPushButton(color.title())
+            button.setStyleSheet(f"background-color: {color};")
+            button_layout.addWidget(button)
 
-    def mostrar_pacientes(self, pacientes):
-        # Mostrar la información de los pacientes en el QTextEdit
-        self.text_edit.clear()
-        for paciente in pacientes:
-            paciente.asignar_color()
-            self.text_edit.append(str(paciente))
+        self.setLayout(main_layout)
+        self.show()
 
-    def create_paciente_group_box(self, paciente_info):
-        grupo_box = QGroupBox()
-        layout = QVBoxLayout()
-        label = QLabel(paciente_info)
-        layout.addWidget(label)
-        grupo_box.setLayout(layout)
-        return grupo_box
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.add_color)
+        self.timer.start(1000)
 
+    def add_color(self):
+        new_colors = ['red', 'orange', 'yellow', 'yellow', 'yellow', 'green', 'green', 'blue', 'blue', 'blue']
+        new_color = random.choice(new_colors)
+        self.colors.append(new_color)
+        self.colors_count[new_color] += 1
 
+        for layout_idx, (color, count) in enumerate(self.colors_count.items()):
+            button_layout = self.layout().itemAt(layout_idx)
+            while button_layout.count() > 1:
+                widget = button_layout.itemAt(1).widget()
+                button_layout.removeWidget(widget)
+                widget.setParent(None)
 
+            for _ in range(count):
+                button = QPushButton(color.title())
+                button.setStyleSheet(f"background-color: {color};")
+                button_layout.addWidget(button)
 
-
-    # nombre del archivo
-#class PatientManager(QWidget):
-#    def __init__(self):
-#         super().__init__()
-#         self.setWindowTitle('Hospital')
-#
-#         self.patients_list = QListWidget()
-
-  #       layout = QVBoxLayout()
-  #       layout.addWidget(self.patients_list)
-
-   #      self.setLayout(layout)
-
-         # Configurar un temporizador para leer los pacientes cada 5 segundos (5000 milisegundos)
-    #     self.timer = QTimer(self)
-    #     self.timer.timeout.connect(self.load_patients)
-    #     self.timer.start(5000)  # Tiempo en milisegundos (5 segundos)
-
+def main():
+    app = QApplication(sys.argv)
+    ex = ColorSorter()
+    sys.exit(app.exec())
 
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ventana = VentanaHospital()
-    ventana.show()
-    ventana.setGeometry(100, 100, 400, 300)
-    sys.exit(app.exec())
+    main()
