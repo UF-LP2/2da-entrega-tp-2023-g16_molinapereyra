@@ -1,0 +1,6 @@
+{
+    "python.analysis.autoImportCompletions": true,
+    "githubPullRequests.ignoredPullRequestBranches": [
+        "main"
+    ]
+}
